@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
-
-const mongoURI = "mongodb://localhost:27017/";
+mongoose.set('strictQuery', true);
 
 const connectToMongo = () => {
-    mongoose.set("strictQuery", false);
-    mongoose.connect(mongoURI, ()=> {
-        console.log("connected to mongo successfully");
+    mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.5")
+    .then(()=>{
+        console.log("databse connected successfully")
+    })
+    .catch(()=>{
+        console.log("databse not connected");
     })
 }
 
